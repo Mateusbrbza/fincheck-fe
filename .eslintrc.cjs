@@ -4,11 +4,12 @@ module.exports = {
         "es2021": true
     },
     "extends": [
+        "prettier",
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
-        "prettier"
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
     ],
     "overrides": [
         {
@@ -25,9 +26,9 @@ module.exports = {
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-    },
+        "ecmaVersion": 'latest',
+        "sourceType": 'module',
+     },
     "plugins": [
         "@typescript-eslint",
         "react",
