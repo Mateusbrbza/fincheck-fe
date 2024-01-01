@@ -32,7 +32,7 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
+
   },
-  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
