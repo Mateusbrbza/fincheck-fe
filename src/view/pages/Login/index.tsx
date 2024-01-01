@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Input } from '../../components/Input';
@@ -6,7 +5,7 @@ import { Button } from '../../components/Button';
 import { useLoginController } from './useLoginController';
 
 export function Login() {
-  const { handleSubmit, register } = useLoginController();
+  const { handleSubmit, register, errors } = useLoginController();
 
   return (
     <>
@@ -36,11 +35,14 @@ export function Login() {
         <Input
           type="email"
           placeholder="E-mail"
+          error={errors.email?.message}
           {...register('email')}
         />
+
         <Input
           type="password"
           placeholder="Senha"
+          error={errors.password?.message}
           {...register('password')}
         />
 
