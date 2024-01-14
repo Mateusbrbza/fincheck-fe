@@ -4,8 +4,11 @@ import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
+// Services
 import { authService } from "../../../app/services/authService";
 import { SignupParams } from "../../../app/services/authService/signup";
+// Hooks
+import { useAuth } from '../../../app/hooks/useAuth';
 
 const schema = z.object({
   name: z.string()
@@ -35,9 +38,13 @@ export function useRegisterController() {
     },
   });
 
+  const { signin } = useAuth();
+
   const handleSubmit = hookFormSubmit(async (data) => {
     try{
-      await mutateAsync(data);
+      const { accessToken } = await mutateAsync(data);
+
+      signin(accessToken);
     } catch {
       toast.error('Ocorreu um erro ao criar a sua conta!');
     }
