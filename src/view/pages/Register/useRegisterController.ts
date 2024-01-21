@@ -50,7 +50,5 @@ export function useRegisterController() {
     }
   });
 
-  console.log(isLoading);
-
   return { register, errors, handleSubmit, isLoading };
 }
