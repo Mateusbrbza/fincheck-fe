@@ -1,5 +1,9 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 import { localStorageKeys } from "../config/localStorageKeys";
+import { usersService } from "../services/usersService";
+import { httpClient } from "../services/httpClient";
 
 export interface AuthContextValue {
   signedIn: boolean;
@@ -14,6 +18,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const storedAccessToken = localStorage.getItem(localStorageKeys.ACCESS_TOKEN);
 
     return Boolean(storedAccessToken);
+  });
+
+  // const setAccessToken = useCallback((accessToken: string) => {
+  //   httpClient.defaults.headers.Authorization = `Bearer ${accessToken}`;
+  // }, []);
+
+  // useEffect(() => {
+  //   const storedAccessToken = localStorage.getItem(localStorageKeys.ACCESS_TOKEN);
+
+  //   if (storedAccessToken) {
+  //     setAccessToken(localStorageKeys.ACCESS_TOKEN);
+  //   }
+  // }, [setAccessToken]);
+
+  useQuery({
+    queryKey: ['users', 'me'],
+    queryFn: () => usersService.me(),
   });
 
   const signin = useCallback((accessToken: string) => {
