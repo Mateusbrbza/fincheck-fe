@@ -6,14 +6,15 @@
     "module": "commonjs",
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    "allowJs": true,
+    "esModuleInterop": true,
+
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -28,14 +29,13 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "incremental": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-
+    "forceConsistentCasingInFileNames": false
   },
   "references": [{ "path": "./tsconfig.node.json" }],
   "include": ["**/*.ts", "**/*.tsx", "src"],
