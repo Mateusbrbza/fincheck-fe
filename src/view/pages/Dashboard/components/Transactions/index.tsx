@@ -1,25 +1,25 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { ChevronDownIcon } from '@radix-ui/react-icons'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { ChevronDownIcon } from '@radix-ui/react-icons';
 //Icons
-import { Spinner } from '@/view/components/Spinner'
-import { FilterIcon } from '@/view/components/icons/FilterIcon'
-import { TransactionsIcon } from '@/view/components/icons/TransactionsIcon'
-import { CategoryIcon } from '@/view/components/icons/categories/CategoryIcon'
-import emptyStateImage from '../../../../../assets/empty-state.svg'
+import { Spinner } from '@/view/components/Spinner';
+import { FilterIcon } from '@/view/components/icons/FilterIcon';
+import { TransactionsIcon } from '@/view/components/icons/TransactionsIcon';
+import { CategoryIcon } from '@/view/components/icons/categories/CategoryIcon';
+import emptyStateImage from '../../../../../assets/empty-state.svg';
 // Utils
-import { cn } from '@/app/utils/cn'
-import { MONTHS } from '@/app/config/constants'
-import formatCurrency from '@/app/utils/formatCurrency'
+import { cn } from '@/app/utils/cn';
+import { MONTHS } from '@/app/config/constants';
+import formatCurrency from '@/app/utils/formatCurrency';
 // Components
-import { SliderOption } from './SliderOption'
-import { SliderNavigation } from './SliderNavigation'
-import { useTransactionsController } from './useTransactionsController'
+import { SliderOption } from './SliderOption';
+import { SliderNavigation } from './SliderNavigation';
+import { useTransactionsController } from './useTransactionsController';
 
 export default function Transactions() {
   const { areValuesVisible, isInitialLoading, isLoading, transactions } =
-    useTransactionsController()
+    useTransactionsController();
 
-  const hasTransactions = transactions.length > 0
+  const hasTransactions = transactions.length > 0;
 
   return (
     <div className="bg-gray-100 rounded-2xl w-full h-full p-10 flex flex-col">
@@ -107,5 +107,5 @@ export default function Transactions() {
         </>
       )}
     </div>
-  )
+  );
 }
