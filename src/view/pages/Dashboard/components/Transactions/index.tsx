@@ -1,9 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { ChevronDownIcon } from '@radix-ui/react-icons';
 //Icons
 import { Spinner } from '@/view/components/Spinner';
 import { FilterIcon } from '@/view/components/icons/FilterIcon';
-import { TransactionsIcon } from '@/view/components/icons/TransactionsIcon';
 import { CategoryIcon } from '@/view/components/icons/categories/CategoryIcon';
 import emptyStateImage from '../../../../../assets/empty-state.svg';
 // Utils
@@ -13,6 +11,7 @@ import formatCurrency from '@/app/utils/formatCurrency';
 // Components
 import { SliderOption } from './SliderOption';
 import { SliderNavigation } from './SliderNavigation';
+import TransactionTypeDropdown from './TransactionTypeDropdown';
 import { useTransactionsController } from './useTransactionsController';
 
 export default function Transactions() {
@@ -32,13 +31,7 @@ export default function Transactions() {
         <>
           <header>
             <div className="flex items-center justify-between">
-              <button className="flex items-center gap-2">
-                <TransactionsIcon />
-                <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
-                  Transações
-                </span>
-                <ChevronDownIcon className="text-gray-900 " />
-              </button>
+              <TransactionTypeDropdown />
 
               <button>
                 <FilterIcon />
