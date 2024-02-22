@@ -1,17 +1,17 @@
-import 'swiper/css'
-import { cn } from '@/app/utils/cn'
-import { PlusIcon } from '@radix-ui/react-icons'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css';
+import { cn } from '@/app/utils/cn';
+import { PlusIcon } from '@radix-ui/react-icons';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Components
-import AccountCard from './AccountCard'
-import AccountsSlider from './AccountsSlider'
-import { EyeIcon } from '@/view/components/icons/EyeIcon'
-import { Spinner } from '@/view/components/Spinner'
+import AccountCard from './AccountCard';
+import AccountsSlider from './AccountsSlider';
+import { EyeIcon } from '@/view/components/icons/EyeIcon';
+import { Spinner } from '@/view/components/Spinner';
 
 // Hooks
-import { useAccountsController } from './useAccountsController'
-import formatCurrency from '@/app/utils/formatCurrency'
+import { useAccountsController } from './useAccountsController';
+import formatCurrency from '@/app/utils/formatCurrency';
 
 export default function Accounts() {
   const {
@@ -22,13 +22,14 @@ export default function Accounts() {
     toggleValuesVisibility,
     isLoading,
     accounts,
-  } = useAccountsController()
+    openNewAccountModal,
+  } = useAccountsController();
 
   return (
     <div className="bg-emerald-700 rounded-2xl w-full h-full md:p-10 px-4 py-8 flex flex-col">
       {isLoading && (
         <div className="w-full h-full flex items-center justify-center">
-          <Spinner className="text-teal-800 fill-white w-12 h-12" />
+          <Spinner className="text-green-900 fill-white w-12 h-12" />
         </div>
       )}
 
@@ -67,7 +68,10 @@ export default function Accounts() {
                   </strong>
                 </div>
 
-                <button className="mt-4 h-52 rounded-2xl border-2 border-dashed border-white flex flex-col items-center justify-center gap-4 text-white">
+                <button
+                  className="mt-4 h-52 rounded-2xl border-2 border-dashed border-white flex flex-col items-center justify-center gap-4 text-white"
+                  onClick={openNewAccountModal}
+                >
                   <div className="w-11 h-11 rounded-full border-2 border-dashed border-white flex items-center justify-center">
                     <PlusIcon className="w-6 h-6" />
                   </div>
@@ -87,7 +91,7 @@ export default function Accounts() {
                     setSliderState({
                       isBeginning: swiper.isBeginning,
                       isEnd: swiper.isEnd,
-                    })
+                    });
                   }}
                 >
                   <div
@@ -137,5 +141,5 @@ export default function Accounts() {
         </>
       )}
     </div>
-  )
+  );
 }

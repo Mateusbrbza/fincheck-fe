@@ -21,17 +21,14 @@ export function Login() {
 
           <Link
             to="/register"
-            className="tracking-tighter-[-0.5px] font-medium text-teal-700"
+            className="tracking-tighter-[-0.5px] font-medium text-green-800"
           >
             Crie uma conta
           </Link>
         </p>
       </header>
 
-      <form
-        className="mt-[60px] flex flex-col gap-4"
-        onSubmit={handleSubmit}
-      >
+      <form className="mt-[60px] flex flex-col gap-4" onSubmit={handleSubmit}>
         <Input
           type="email"
           placeholder="E-mail"

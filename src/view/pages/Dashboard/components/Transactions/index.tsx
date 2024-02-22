@@ -101,7 +101,7 @@ export default function Transactions() {
 
                 <span
                   className={cn(
-                    'text-red-700 tracking-[-0.5px] font-medium',
+                    'text-red-800 tracking-[-0.5px] font-medium',
                     !areValuesVisible && 'blur-sm',
                   )}
                 >

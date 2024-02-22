@@ -21,17 +21,14 @@ export function Register() {
 
           <Link
             to="/login"
-            className="tracking-tighter-[-0.5px] font-medium text-teal-700"
+            className="tracking-tighter-[-0.5px] font-medium text-green-800"
           >
             Fazer Login
           </Link>
         </p>
       </header>
 
-      <form
-        onSubmit={handleSubmit}
-        className="mt-[60px] flex flex-col gap-4"
-      >
+      <form onSubmit={handleSubmit} className="mt-[60px] flex flex-col gap-4">
         <Input
           placeholder="Nome"
           error={errors.name?.message}

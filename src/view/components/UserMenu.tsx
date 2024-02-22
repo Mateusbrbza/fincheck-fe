@@ -9,8 +9,8 @@ export function UserMenu() {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <div className="bg-teal-50 rounded-full w-12 h-12 flex items-center justify-center border border-teal-100">
-          <span className="text-sm tracking-[-0.5px] text-teal-700 font-medium">
+        <div className="bg-green-50 rounded-full w-12 h-12 flex items-center justify-center border border-green-100">
+          <span className="text-sm tracking-[-0.5px] text-green-800 font-medium">
             MB
           </span>
         </div>
