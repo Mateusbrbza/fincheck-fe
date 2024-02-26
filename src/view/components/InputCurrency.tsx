@@ -1,12 +1,28 @@
 import { NumericFormat } from 'react-number-format';
+import { FieldError } from './FieldError';
+import { cn } from '@/app/utils/cn';
 
-export function InputCurrency() {
+interface InputCurrencyProps {
+  error?: string;
+  value?: string;
+  onChange?(value: string): void;
+}
+
+export function InputCurrency({ error, onChange, value }: InputCurrencyProps) {
   return (
-    <NumericFormat
-      thousandSeparator="."
-      decimalSeparator=","
-      defaultValue="0"
-      className="w-full text-gray-800 text-[32px] font-bold tracking-[-1px] outline-none"
-    />
+    <div>
+      <NumericFormat
+        thousandSeparator="."
+        decimalSeparator=","
+        value={value}
+        onChange={event => onChange?.(event.target.value)}
+        className={cn(
+          'text-gray-800 text-[32px] font-bold tracking-[-1px] outline-none w-full',
+          error && 'text-red-900',
+        )}
+      />
+
+      {error && <FieldError errorMessage={error} />}
+    </div>
   );
 }

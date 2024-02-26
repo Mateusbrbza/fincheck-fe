@@ -1,9 +1,5 @@
 import * as RadixSelect from '@radix-ui/react-select';
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  CrossCircledIcon,
-} from '@radix-ui/react-icons';
+import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 import { cn } from '@/app/utils/cn';
 import { FieldError } from './FieldError';
 import { useState } from 'react';
@@ -16,6 +12,8 @@ interface SelectProps {
     value: string;
     label: string;
   }[];
+  value?: string;
+  onChange?(value: string): void;
 }
 
 export function Select({
@@ -23,11 +21,14 @@ export function Select({
   error,
   placeholder,
   options,
+  value,
+  onChange,
 }: SelectProps) {
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState(value ?? '');
 
   function handleSelect(value: string) {
     setSelectedValue(value);
+    onChange?.(value);
   }
 
   return (
@@ -42,7 +43,7 @@ export function Select({
         >
           {placeholder}
         </label>
-        <RadixSelect.Root onValueChange={handleSelect}>
+        <RadixSelect.Root value={value} onValueChange={handleSelect}>
           <RadixSelect.Trigger
             className={cn(
               'bg-white w-full rounded-lg border border-gray-500 px-3 h-[52px] text-gray-800 focus:border-gray-800 transition-all outline-none text-left relative pt-4',
