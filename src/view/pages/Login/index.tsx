@@ -21,7 +21,7 @@ export function Login() {
 
           <Link
             to="/register"
-            className="tracking-tighter-[-0.5px] font-medium text-green-800"
+            className="tracking-tighter-[-0.5px] font-medium text-teal-800"
           >
             Crie uma conta
           </Link>

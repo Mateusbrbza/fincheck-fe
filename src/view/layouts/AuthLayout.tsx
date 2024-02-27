@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 import illustration from '../../assets/illustration.png';
@@ -23,7 +22,7 @@ export function AuthLayout() {
         />
 
         <div className="max-w-[656px] bottom-8 mx-4 bg-white p-10 absolute rounded-b-[32px]">
-          <Logo className="text-green-800 h-8" />
+          <Logo className="text-teal-800 h-8" />
 
           <p className="text-gray-700 font-medium text-xl mt-6">
             Gerencie suas finanças pessoais de uma forma simples com o fincheck,

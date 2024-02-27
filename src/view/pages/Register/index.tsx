@@ -21,7 +21,7 @@ export function Register() {
 
           <Link
             to="/login"
-            className="tracking-tighter-[-0.5px] font-medium text-green-800"
+            className="tracking-tighter-[-0.5px] font-medium text-teal-800"
           >
             Fazer Login
           </Link>

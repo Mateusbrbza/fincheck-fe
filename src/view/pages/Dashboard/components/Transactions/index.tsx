@@ -7,7 +7,7 @@ import emptyStateImage from '../../../../../assets/empty-state.svg';
 // Utils
 import { cn } from '@/app/utils/cn';
 import { MONTHS } from '@/app/config/constants';
-import formatCurrency from '@/app/utils/formatCurrency';
+import { formatCurrency } from '@/app/utils/formatCurrency';
 // Components
 import { FiltersModal } from './FiltersModal';
 import { SliderOption } from './SliderOption';
