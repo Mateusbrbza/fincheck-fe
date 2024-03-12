@@ -14,12 +14,13 @@ interface AccountCardProps {
 
 export default function AccountCard({ data }: AccountCardProps) {
   const { color, name, currentBalance, type } = data;
+
   const { areValuesVisible, openEditAccountModal } = useDashboard();
 
   return (
     <div
-      className="p-4 bg-white rounded-2xl h-[200px] flex flex-col justify-between border-b-4"
-      style={{ borderColor: color }}
+      className="p-4 bg-white rounded-2xl h-[200px] flex flex-col justify-between border-b-4 border-b-teal-950"
+      style={{ borderBottomColor: color }}
       role="button"
       onClick={() => openEditAccountModal(data)}
     >

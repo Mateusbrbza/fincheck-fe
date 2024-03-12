@@ -15,19 +15,24 @@ import { SliderOption } from './SliderOption';
 import { SliderNavigation } from './SliderNavigation';
 import { TransactionTypeDropdown } from './TransactionTypeDropdown';
 import { useTransactionsController } from './useTransactionsController';
+import { EditTransactionModal } from '../../modals/EditTransactionModal';
 
 export default function Transactions() {
   const {
     areValuesVisible,
     isInitialLoading,
-    isLoading,
     transactions,
-    handleCloseFiltersModal,
-    handleOpenFiltersModal,
+    isLoading,
     isFiltersModalOpen,
+    handleOpenFiltersModal,
+    handleCloseFiltersModal,
     handleChangeFilters,
     filters,
     handleApplyFilters,
+    isEditModalOpen,
+    transactionBeingEdited,
+    handleCloseEditModal,
+    handleOpenEditModal,
   } = useTransactionsController();
 
   const hasTransactions = transactions.length > 0;
@@ -36,9 +41,10 @@ export default function Transactions() {
     <div className="bg-gray-100 rounded-2xl w-full h-full p-10 flex flex-col">
       {isInitialLoading && (
         <div className="w-full h-full flex items-center justify-center">
-          <Spinner className="w-12 h-12" />
+          <Spinner className="w-10 h-10" />
         </div>
       )}
+
       {!isInitialLoading && (
         <>
           <FiltersModal
@@ -59,7 +65,7 @@ export default function Transactions() {
               </button>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 relative">
               <Swiper
                 slidesPerView={3}
                 centeredSlides
@@ -84,16 +90,17 @@ export default function Transactions() {
               </Swiper>
             </div>
           </header>
+
           <div className="mt-4 space-y-2 flex-1 overflow-y-auto">
             {isLoading && (
-              <div className="flex items-center flex-col h-full justify-center">
-                <Spinner className="w-12 h-12" />
+              <div className="flex flex-col items-center justify-center h-full">
+                <Spinner className="w-10 h-10" />
               </div>
             )}
 
             {!hasTransactions && !isLoading && (
-              <div className="flex items-center flex-col h-full justify-center">
-                <img src={emptyStateImage} alt="Empty State" />
+              <div className="flex flex-col items-center justify-center h-full">
+                <img src={emptyStateImage} alt="Empty state" />
                 <p className="text-gray-700">
                   Não encontramos nenhuma transação!
                 </p>
@@ -102,10 +109,20 @@ export default function Transactions() {
 
             {hasTransactions && !isLoading && (
               <>
+                {transactionBeingEdited && (
+                  <EditTransactionModal
+                    open={isEditModalOpen}
+                    onClose={handleCloseEditModal}
+                    transaction={transactionBeingEdited}
+                  />
+                )}
+
                 {transactions.map(transaction => (
                   <div
-                    className="bg-white p-4 rounded-2xl flex items-center justify-between"
                     key={transaction.id}
+                    className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4"
+                    role="button"
+                    onClick={() => handleOpenEditModal(transaction)}
                   >
                     <div className="flex-1 flex items-center gap-3">
                       <CategoryIcon

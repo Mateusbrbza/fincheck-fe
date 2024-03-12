@@ -1,11 +1,11 @@
-import { Modal } from '@/view/components/Modal';
-import { useNewAccountModalController } from './useNewAccountModalController';
-import { InputCurrency } from '@/view/components/InputCurrency';
-import { Input } from '@/view/components/Input';
-import { Select } from '@/view/components/Select';
-import { ColorsDropdownInput } from '@/view/components/ColorsDropdownInput';
-import { Button } from '@/view/components/Button';
 import { Controller } from 'react-hook-form';
+import { Button } from '../../../../components/Button';
+import { ColorsDropdownInput } from '../../../../components/ColorsDropdownInput';
+import { Input } from '../../../../components/Input';
+import { InputCurrency } from '../../../../components/InputCurrency';
+import { Modal } from '../../../../components/Modal';
+import { Select } from '../../../../components/Select';
+import { useNewAccountModalController } from './useNewAccountModalController';
 
 export function NewAccountModal() {
   const {
@@ -27,7 +27,7 @@ export function NewAccountModal() {
       <form onSubmit={handleSubmit}>
         <div>
           <span className="text-gray-600 tracking-[-0.5px] text-xs">
-            Saldo Inicial
+            Saldo inicial
           </span>
           <div className="flex items-center gap-2">
             <span className="text-gray-600 tracking-[-0.5px] text-lg">R$</span>
@@ -50,7 +50,6 @@ export function NewAccountModal() {
         <div className="mt-10 flex flex-col gap-4">
           <Input
             type="text"
-            name="initialBalance"
             placeholder="Nome da Conta"
             error={errors.name?.message}
             {...register('name')}
@@ -69,15 +68,15 @@ export function NewAccountModal() {
                 options={[
                   {
                     value: 'CHECKING',
-                    label: 'Dinheiro Físico',
+                    label: 'Conta Corrente',
                   },
                   {
                     value: 'INVESTMENT',
-                    label: 'Investimento',
+                    label: 'Investimentos',
                   },
                   {
                     value: 'CASH',
-                    label: 'Conta Corrente',
+                    label: 'Dinheiro Físico',
                   },
                 ]}
               />
@@ -87,6 +86,7 @@ export function NewAccountModal() {
           <Controller
             control={control}
             name="color"
+            defaultValue=""
             render={({ field: { onChange, value } }) => (
               <ColorsDropdownInput
                 error={errors.color?.message}

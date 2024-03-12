@@ -1,9 +1,9 @@
-import { useWindowWidth } from '@/app/hooks/useWindowWidth';
 import { useMemo, useState } from 'react';
+import { useBankAccounts } from '../../../../../app/hooks/useBankAccounts';
+import { useWindowWidth } from '../../../../../app/hooks/useWindowWidth';
 import { useDashboard } from '../DashboardContext/useDashboard';
-import { useBankAccounts } from '@/app/hooks/useBankAccounts';
 
-export function useAccountsController() {
+export default function useAccountsController() {
   const windowWidth = useWindowWidth();
   const { areValuesVisible, toggleValuesVisibility, openNewAccountModal } =
     useDashboard();
@@ -23,14 +23,14 @@ export function useAccountsController() {
   }, [accounts]);
 
   return {
-    windowWidth,
     sliderState,
     setSliderState,
-    areValuesVisible,
+    windowWidth,
     toggleValuesVisibility,
-    openNewAccountModal,
+    areValuesVisible,
     isLoading: isFetching,
-    accounts: accounts,
+    accounts,
+    openNewAccountModal,
     currentBalance,
   };
 }

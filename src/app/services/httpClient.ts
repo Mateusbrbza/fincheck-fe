@@ -7,7 +7,7 @@ export const httpClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });
 
-httpClient.interceptors.request.use(config => {
+httpClient.interceptors.request.use(async config => {
   const accessToken = localStorage.getItem(localStorageKeys.ACCESS_TOKEN);
 
   if (accessToken) {
@@ -18,7 +18,7 @@ httpClient.interceptors.request.use(config => {
 });
 
 httpClient.interceptors.response.use(async data => {
-  await sleep(1500);
+  await sleep(500);
 
   return data;
 });

@@ -1,13 +1,11 @@
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
-// Components
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { z } from 'zod';
+import { bankAccountsService } from '../../../../../app/services/bankAccountsService';
+import { currencyStringToNumber } from '../../../../../app/utils/currencyStringToNumber';
 import { useDashboard } from '../../components/DashboardContext/useDashboard';
-// Services
-import { bankAccountsService } from '@/app/services/bankAccountsService';
-import { currencyStringToNumber } from '@/app/utils/currencyStringToNumber';
-import toast from 'react-hot-toast';
 
 const schema = z.object({
   initialBalance: z.string().nonempty('Saldo inicial é obrigatório'),
@@ -38,11 +36,11 @@ export function useNewAccountModalController() {
     try {
       await mutateAsync({
         ...data,
-        initialBalance: currencyStringToNumber(data.initialBalance),
+        initialBalance: currencyStringToNumber(data?.initialBalance),
       });
 
       queryClient.invalidateQueries({ queryKey: ['bankAccounts'] });
-      toast.success('Conta cadastrada com sucesso!');
+      toast.success('Conta foi cadastrada com sucesso!');
       closeNewAccountModal();
       reset();
     } catch {

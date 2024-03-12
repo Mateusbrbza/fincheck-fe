@@ -12,7 +12,6 @@ export function InputCurrency({ error, onChange, value }: InputCurrencyProps) {
   return (
     <div>
       <NumericFormat
-        thousandSeparator="."
         decimalSeparator=","
         value={value}
         onChange={event => onChange?.(event.target.value)}

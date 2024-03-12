@@ -1,14 +1,12 @@
-import { z } from 'zod';
-import toast from 'react-hot-toast';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-// Components
-import { useDashboard } from '../../components/DashboardContext/useDashboard';
-// Services
-import { bankAccountsService } from '@/app/services/bankAccountsService';
-import { currencyStringToNumber } from '@/app/utils/currencyStringToNumber';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { z } from 'zod';
+import { bankAccountsService } from '../../../../../app/services/bankAccountsService';
+import { currencyStringToNumber } from '../../../../../app/utils/currencyStringToNumber';
+import { useDashboard } from '../../components/DashboardContext/useDashboard';
 
 const schema = z.object({
   initialBalance: z.union([
@@ -23,11 +21,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function useEditAccountModalController() {
-  const queryClient = useQueryClient();
   const { isEditAccountModalOpen, closeEditAccountModal, accountBeingEdited } =
     useDashboard();
-
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const {
     register,
@@ -44,6 +39,9 @@ export function useEditAccountModalController() {
     },
   });
 
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const queryClient = useQueryClient();
   const { isLoading, mutateAsync: updateAccount } = useMutation(
     bankAccountsService.update,
   );
@@ -54,12 +52,12 @@ export function useEditAccountModalController() {
     try {
       await updateAccount({
         ...data,
-        initialBalance: currencyStringToNumber(data.initialBalance),
+        initialBalance: currencyStringToNumber(data?.initialBalance),
         id: accountBeingEdited!.id,
       });
 
       queryClient.invalidateQueries({ queryKey: ['bankAccounts'] });
-      toast.success('Conta editada com sucesso!');
+      toast.success('A conta foi editada com sucesso!');
       closeEditAccountModal();
     } catch {
       toast.error('Erro ao salvar as alterações!');
@@ -79,7 +77,7 @@ export function useEditAccountModalController() {
       await removeAccount(accountBeingEdited!.id);
 
       queryClient.invalidateQueries({ queryKey: ['bankAccounts'] });
-      toast.success('Conta foi deletada com sucesso!');
+      toast.success('A conta foi deletada com sucesso!');
       closeEditAccountModal();
     } catch {
       toast.error('Erro ao deletar a conta!');
@@ -87,8 +85,8 @@ export function useEditAccountModalController() {
   }
 
   return {
-    closeEditAccountModal,
     isEditAccountModalOpen,
+    closeEditAccountModal,
     register,
     errors,
     handleSubmit,
